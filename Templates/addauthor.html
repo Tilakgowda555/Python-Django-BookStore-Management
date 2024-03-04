@@ -1,0 +1,36 @@
+{% extends 'basic.html' %}
+{% load static %}
+<html>
+<head>
+{% block title %}
+    Add Author Page
+{% endblock %}
+
+</head>
+<body>
+{% block content %}
+<div class="container pt-1">
+    <form action="#" method="post">
+        {% csrf_token %}
+        <h3><b>Enter Author Details Here!</b></h3></br>
+        <input type="text" class="form-control" name="auth_name" placeholder="Enter AuthorName"/> <br/>
+        <input type="date" class="form-control"  name="auth_dob" placeholder="Enter AuthorDob"/> <br/>
+        Gender<select name="ddlgender" class="form-control">
+                         <option>---Select Option---</option>
+                         <option>Male</option>
+                         <option>Female</option>
+    </select><br/>
+        <input type="text" class="form-control"  name="auth_email" placeholder="Enter Author Email"/> <br/>
+        <input type="number" class="form-control"  name="auth_phone" placeholder="Enter Author Phone"/> <br/>
+        <select name="ddlcity" id="auth_city" class="form-control" >
+            <option> --Select City--</option>
+            {% for city in cities %}
+            <option>{{city.CityName}}</option>
+            {% endfor %}
+        </select> <br/>
+        <input type="submit" value="Add Author" class="btn btn-success form-control"/>
+    </form>
+    </div>
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,23 @@
+{% extends 'basic.html' %}
+{% load static %}
+{% block title %}
+Home Page
+{% endblock %}
+
+{% block content %}
+<div class="container" align="center">
+<div class="card" style="width: 28rem;">
+  <img src="{% static 'images/img2.png' %}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Book Store Management System</h5>
+    <p class="card-text">Manage The Author & Books Information</p>
+    {% if request.session.name %}
+    <a href="{% url 'addauthor' %}" class="btn btn-outline-success">Add Author </a>
+    <a href="{% url 'displayauthor' %}" class="btn btn-outline-info" > Display Authors </a><br/>
+    {% endif %}
+    <a href="{% url 'addbook' %}" class="btn btn-outline-success">Add Book </a>
+    <a href="{% url 'displaybook' %}" class="btn btn-outline-info"> Display Books </a>
+  </div>
+</div>
+</div>
+{% endblock %}

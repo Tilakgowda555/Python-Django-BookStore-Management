@@ -1,0 +1,40 @@
+{% extends 'basic.html' %}
+{% load static %}
+
+<html>
+<head>
+{% block title %}
+    Edit Author
+{% endblock %}
+</head>
+<body>
+{% block content %}
+<form method="post" class="container">
+    {% csrf_token %}
+    <lable>AuthorName</lable>
+    <input type="text" class="form-control" name="auth_name" value="{{author.AuthorName}}"/> <br/>
+    <lable>AuthorDob</lable>
+    <input type="date" name="auth_dob" class="form-control" value="{{author.AuthorDob}}" /> <br/>
+    Gender<select name="ddlgender" class="form-control">
+    <option selected>{{author.AuthorGender}}</option>
+                      <option>---Select Option---</option>
+                     <option>Male</option>
+                     <option>Female</option>
+</select><br/>
+    <label>AuthorEmail</label>
+    <input type="text" name="auth_email" class="form-control" value="{{author.AuthorEmail}}"/> <br/>
+    <label>AuthorNumber</label>
+    <input type="number" name="auth_phone" class="form-control" value="{{author.AuthorPhone}}"/> <br/>
+    City <select name="ddlcity" id="auth_city" class="form-control">
+        <option selected>{{author.AuthorCity.CityName}}</option>
+        <option>---Select Option---</option>
+        {% for city in cities %}
+        <option>{{city.CityName}}</option>
+        {% endfor %}
+    </select> <br/>
+    <input type="submit" value="Edit Author" class="btn btn-warning form-control">
+
+</form>
+{% endblock %}
+</body>
+</html>

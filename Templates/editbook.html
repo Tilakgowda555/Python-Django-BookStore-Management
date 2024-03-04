@@ -1,0 +1,47 @@
+{% extends 'basic.html' %}
+{% load static %}
+<html>
+<head>
+    {% block title %}
+        Edit Book Page
+    {% endblock %}
+</head>
+<body>
+
+{% block content %}
+<form method="post" class="container">
+    {% csrf_token %}
+    <h2><strong>Update Book Details Here!</strong></h2>
+
+    <label>BookName</label>
+    <input type="text" class="form-control" name="bookname" value="{{book.BookName}}"/><br/>
+
+    <label>BookDescription</label>
+    <input type="text" name="bookdesc" class="form-control" value="{{book.BookDescription}}"/><br/>
+
+    <label>BookPublishedOn</label>
+    <input type="date" name="bookpub" class="form-control" value="{{book.BookPublishedOn}}"/><br/>
+
+    <label>BookPrice</label>
+    <input type="number" name="bookprice" class="form-control" value="{{book.BookPrice}}"/> <br/>
+
+    <label>BookAuthor</label>
+    <select name="book_author" class="form-control">
+        {% for author in authors %}
+            <option value="{{ author.id }}" {% if book.BookAuthor.id == author.id %}selected{% endif %}>{{ author.AuthorName }}</option>
+        {% endfor %}
+    </select><br/>
+
+    <label>BookCategory</label>
+    <select name="book_category" class="form-control">
+        {% for category in categories %}
+            <option value="{{ category.id }}" {% if book.BookCategory.id == category.id %}selected{% endif %}>{{ category.CategoryName }}</option>
+        {% endfor %}
+    </select><br/>
+
+    <input type="submit" value="Edit Book" class="btn btn-warning form-control"/>
+
+</form>
+{% endblock %}
+</body>
+</html>
